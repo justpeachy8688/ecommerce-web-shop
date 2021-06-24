@@ -1,13 +1,14 @@
+import React from 'react'
+import Products from './components/Products/Products';
+
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-
-function App() {
-
-  
-    return (
-      <h1>hiiiii</h1>
-    );
-  
+const App = () => {
+  return (
+    <div>
+      <Products />
+    </div>
+  )
 }
 
-export default App;
+export default App
