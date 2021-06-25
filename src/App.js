@@ -1,11 +1,13 @@
 import React from 'react'
-import Products from './components/Products/Products';
+import { Products, Navbar } from './components';
+import './App.css';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 const App = () => {
   return (
-    <div>
+    <div className="entire-app">
+      <Navbar />
       <Products />
     </div>
   )
