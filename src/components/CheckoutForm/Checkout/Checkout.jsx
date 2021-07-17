@@ -18,7 +18,7 @@ const Checkout = ({ cart }) => {
             try {
                 const token = await commerce.checkout.generateToken(cart.id, { type: 'cart' });
 
-                console.log(token);
+                //console.log(token);
                 setCheckoutToken(token);
 
             } catch (error) {
@@ -27,7 +27,7 @@ const Checkout = ({ cart }) => {
         }
 
         generateToken();
-    }, []);
+    }, [cart]);
 
     const Confirmation = () => (
         <div>
@@ -36,7 +36,7 @@ const Checkout = ({ cart }) => {
     )
 
     const Form = () => activeStep === 0
-        ? <AddressForm />
+        ? <AddressForm checkoutToken={checkoutToken} />
         : <PaymentForm />
 
     return (
@@ -52,7 +52,7 @@ const Checkout = ({ cart }) => {
                             </Step>
                         ))}
                     </Stepper>
-                    {activeStep === steps.length ? <Confirmation /> : <Form />}
+                    {activeStep === steps.length ? <Confirmation /> : checkoutToken && <Form />}
                 </Paper>
             </main>
         </>
