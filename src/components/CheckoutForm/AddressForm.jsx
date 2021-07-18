@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 import { commerce } from '../../lib/commerce';
 import FormInput from './CustomTextField';
 
-const AddressForm = ({ checkoutToken, next }) => {
+const AddressForm = ({ checkoutToken, test }) => {
     const [shippingCountries, setShippingCountries] = useState([]);
     const [shippingCountry, setShippingCountry] = useState('');
     const [shippingSubdivisions, setShippingSubdivisions] = useState([]);
@@ -36,7 +36,7 @@ const AddressForm = ({ checkoutToken, next }) => {
         setShippingSubdivision(Object.keys(subdivisions)[0]);
     }
 
-    const fetchShippingOpetions = async (checkoutTokenId, country, region = null) => {
+    const fetchShippingOptions = async (checkoutTokenId, country, region = null) => {
         const options = await commerce.checkout.getShippingOptions(checkoutTokenId, { country, region });
 
         setShippingOptions(options);
@@ -52,14 +52,14 @@ const AddressForm = ({ checkoutToken, next }) => {
     }, [shippingCountry])
 
     useEffect(() => {
-        if (shippingSubdivision) fetchShippingOpetions(checkoutToken.id, shippingCountry, shippingSubdivision);
+        if (shippingSubdivision) fetchShippingOptions(checkoutToken.id, shippingCountry, shippingSubdivision);
     }, [shippingSubdivision])
 
     return (
         <>
             <Typography variant="h6" gutterBottom>Shipping Address</Typography>
             <FormProvider {...methods}>
-                <form onSubmit={methods.handleSubmit((data) => next({...data, shippingCountry, shippingSubdivision, shippingOption}))}
+                <form onSubmit={methods.handleSubmit((data) => test({ ...data, shippingCountry, shippingSubdivision, shippingOption }))}
                 >
                     <Grid container spacing={3}>
                         <FormInput required name='firstName' label='First name' />

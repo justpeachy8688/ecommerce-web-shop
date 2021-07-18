@@ -1,4 +1,9 @@
+@import url('https://fonts.googleapis.com/css?family=Satisfy');
 #root {
     background-color: peachpuff;
     min-height: 100vh;
+}
+
+#title {
+    font-family: 'Satisfy';
 }
